@@ -12,7 +12,10 @@
     "lint:fix": "yarn lint --fix",
     "validate": "yarn check-format && yarn lint && yarn test:unit && yarn build",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "i18n:export": "npx vue-i18n-service export > translations.json",
+    "i18n:import": "npx vue-i18n-service import < translations.edited.json",
+    "i18n:add-locale": "npx vue-i18n-service create"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -23,6 +26,7 @@
     "vuex": "^3.4.0"
   },
   "devDependencies": {
+    "@intlify/vue-i18n-loader": "^1.0.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
@@ -46,6 +50,7 @@
     "prettier": "^2.2.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "vue-i18n-service": "^0.1.0",
     "vue-jest": "^3.0.7",
     "vue-template-compiler": "^2.6.11",
     "webpack-bundle-analyzer": "^4.4.0"
