@@ -3,10 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "test:unit": "jest --pass-with-no-tests",
+    "test:unit:watch": "jest --watch --pass-with-no-tests",
+    "prettier": "prettier --ignore-path .gitignore \"src/**/*.+(js|json|vue|jsx|wasm)\"",
+    "format": "yarn prettier --write",
+    "check-format": "yarn prettier --list-different",
+    "lint": "eslint --ignore-path .gitignore \"src/**/*.+(js|vue|json|jsx|wasm)\"",
+    "lint:fix": "yarn lint --fix",
+    "validate": "yarn check-format && yarn lint && yarn test:unit && yarn build",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "axios": "^0.21.1",

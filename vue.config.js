@@ -1,3 +1,16 @@
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
 module.exports = {
-  lintOnSave: false
-}
+  configureWebpack: {
+    plugins: [
+      new BundleAnalyzerPlugin(),
+    ],
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `@import "@/design/_design.scss";`,
+      },
+    },
+  },
+};
