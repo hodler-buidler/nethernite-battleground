@@ -1,4 +1,4 @@
-import StorageInterface from '../StorageInterface';
+import StorageInterface from './StorageInterface';
 
 class LocalStorage extends StorageInterface {
   setItem(key, value) {

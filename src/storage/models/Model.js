@@ -1,7 +1,10 @@
+import getStorageByType from '../utils/getStorageByType';
+import key from '../utils/key';
+
 class Model {
-  constructor(storage, instanceId) {
-    this.storage = storage;
-    this.instanceId = instanceId;
+  constructor(storageType, modelKey, id) {
+    this.storage = getStorageByType(storageType);
+    this.modelKey = key(modelKey, id);
   }
 }
 
