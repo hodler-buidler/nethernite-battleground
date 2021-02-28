@@ -5,6 +5,17 @@ export default {
     title: 'Main',
     titleTemplate: `%s | Explore packagies`,
   },
+  created() {
+    this.initCurrentLocale();
+  },
+  methods: {
+    initCurrentLocale() {
+      const savedLocale = this.$LocaleStorage.get();
+      if (savedLocale) {
+        this.$root.$i18n.locale = savedLocale;
+      }
+    },
+  },
 };
 </script>
 

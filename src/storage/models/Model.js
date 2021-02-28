@@ -6,6 +6,10 @@ class Model {
     this.storage = getStorageByType(storageType);
     this.modelKey = key(modelKey, id);
   }
+
+  clear() {
+    this.storage.removeItem(this.modelKey);
+  }
 }
 
 export default Model;

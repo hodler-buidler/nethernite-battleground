@@ -21,10 +21,6 @@ class ExampleModel extends Model {
     const serializedLocations = JSON.stringify(locations);
     this.storage.setItem(this.modelKey, serializedLocations);
   }
-
-  clear() {
-    this.storage.removeItem(this.modelKey);
-  }
 }
 
 export default ExampleModel;
