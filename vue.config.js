@@ -1,6 +1,10 @@
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production'
+        ? '/nethernite-battleground/'
+        : './',
+
   configureWebpack: {
     module: {
       rules: [
