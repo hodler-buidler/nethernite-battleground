@@ -30,6 +30,12 @@ export default {
       ];
     },
   },
+
+  methods: {
+    onRowClick(item) {
+      this.$emit('row-click', item.name);
+    },
+  },
 };
 </script>
 
@@ -40,10 +46,15 @@ export default {
     :loading="loading"
     hide-default-footer
     class="elevation-1"
+    @click:row="onRowClick"
   />
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+::v-deep tbody tr {
+  cursor: pointer;
+}
+</style>
 
 <i18n>
 {

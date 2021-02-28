@@ -3,6 +3,7 @@ import { mapActions } from 'vuex';
 import SearchPackages from '@/components/SearchPackages/SearchPackages.vue';
 import PackagesTable from '@/components/PackagesTable/PackagesTable.vue';
 import BasePagination from '@/components/BasePagination/BasePagination.vue';
+import PackageModal from '@/components/PackageModal/PackageModal.vue';
 
 export default {
   name: 'HomePage',
@@ -11,6 +12,7 @@ export default {
     SearchPackages,
     PackagesTable,
     BasePagination,
+    PackageModal,
   },
 
   props: {
@@ -24,6 +26,8 @@ export default {
     searchInput: '',
     isLoading: false,
     currentPage: 1,
+    selectedPackageName: '',
+    isPackageDetailsWindowOpened: false,
   }),
 
   computed: {
@@ -102,6 +106,15 @@ export default {
       }
     },
 
+    selectPackage(packageName) {
+      this.selectedPackageName = packageName;
+      this.isPackageDetailsWindowOpened = true;
+    },
+
+    unselectPackage() {
+      this.selectedPackageName = '';
+    },
+
     setLoading(value) {
       this.isLoading = value;
     },
@@ -148,9 +161,15 @@ export default {
           :packages="packages"
           :is-search-result="isSearchInputProvided"
           :loading="isLoading"
+          @row-click="selectPackage"
         />
       </div>
     </div>
+    <PackageModal
+      v-model="isPackageDetailsWindowOpened"
+      :package-name="selectedPackageName"
+      @close="unselectPackage"
+    />
   </div>
 </template>
 
