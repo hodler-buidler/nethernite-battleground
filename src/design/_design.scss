@@ -9,4 +9,15 @@ $design-container-max-width: 1100px;
   margin-right: auto;
   width: 100%;
   max-width: $design-container-max-width;
+
+  @media screen and (max-width: 1200px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
+
+/**************************/
+/********* COLORS *********/
+/**************************/
+
+$attention: #e90;

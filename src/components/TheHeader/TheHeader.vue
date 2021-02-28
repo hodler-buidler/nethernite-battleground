@@ -17,9 +17,16 @@ export default {
     <div class="navbar">
       <div>
         <router-link :to="{ name: 'home' }" class="brand-link">
-          <span class="text-h6 font-weight-regular">
-            {{ $t('brand-name', { name: BRAND_NAME }) }}
-          </span>
+          <div class="brand-name">
+            <span
+              class="text-body-2 text-md-h6 font-weight-regular d-none d-sm-block"
+            >
+              {{ $t('brand-name', { name: BRAND_NAME }) }}
+            </span>
+            <span class="d-block d-sm-none">
+              {{ BRAND_NAME }}
+            </span>
+          </div>
         </router-link>
       </div>
       <div>
@@ -40,9 +47,13 @@ export default {
 .brand-link {
   text-decoration: none;
   color: inherit;
+}
+
+.brand-name {
+  transition: 0.2s all;
 
   &:hover {
-    opacity: 0.8;
+    color: $attention;
   }
 }
 </style>

@@ -16,6 +16,10 @@ const routes = [
           page: route.query.page,
         }),
       },
+      {
+        path: '*',
+        redirect: { name: 'home' },
+      },
     ],
   },
 ];

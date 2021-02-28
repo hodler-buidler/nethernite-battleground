@@ -87,7 +87,7 @@ export default {
 
 <template>
   <v-dialog v-model="isOpened" :max-width="800">
-    <v-card :loading="isLoading">
+    <v-card class="modal" :loading="isLoading">
       <v-card-title>
         <div
           class="d-flex justify-space-between align-center"
@@ -145,7 +145,11 @@ export default {
   </v-dialog>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.modal {
+  border: 1px solid $attention;
+}
+</style>
 
 <i18n>
 {

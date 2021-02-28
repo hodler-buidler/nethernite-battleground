@@ -11,7 +11,7 @@
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(js|vue|json|jsx|wasm)\"",
     "lint:fix": "yarn lint --fix",
     "validate": "yarn check-format && yarn lint && yarn test:unit && yarn build",
-    "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "i18n:export": "npx vue-i18n-service export > translations.json",
     "i18n:import": "npx vue-i18n-service import < translations.edited.json",

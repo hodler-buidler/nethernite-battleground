@@ -21,6 +21,7 @@ export default {
 <style lang="scss" scoped>
 .content {
   @extend %container;
-  padding: 40px 0 80px 0;
+  padding-top: 40px;
+  padding-bottom: 80px;
 }
 </style>

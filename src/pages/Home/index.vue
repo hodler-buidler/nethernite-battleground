@@ -58,9 +58,7 @@ export default {
 
     searchInput(newValue) {
       this.setCurrentPage(1);
-      this.$router
-        .push({ query: { ...this.$route.query, search: newValue } })
-        .catch(() => {});
+      this.setQueryParam('search', newValue);
     },
 
     page: {
@@ -75,9 +73,7 @@ export default {
     currentPage(newValue, oldValue) {
       if (newValue === oldValue) return;
       if (!this.isSearchInputProvided) this.getMostPopularPackages();
-      this.$router
-        .push({ query: { ...this.$route.query, page: newValue } })
-        .catch(() => {});
+      this.setQueryParam('page', newValue);
     },
 
     isSearchInputProvided: {
@@ -105,6 +101,12 @@ export default {
       } finally {
         this.setLoading(false);
       }
+    },
+
+    setQueryParam(param, value) {
+      this.$router
+        .push({ query: { ...this.$route.query, [param]: value } })
+        .catch(() => {});
     },
 
     selectPackage(packageName) {
@@ -150,7 +152,7 @@ export default {
     <div class="packages-display">
       <div class="results-header packages-display__header">
         <div>
-          <span class="text-h4">{{ title }}</span>
+          <span class="text-sm-h6 text-md-h4">{{ title }}</span>
         </div>
         <div>
           <BasePagination v-model="currentPage" :items="packages" />
@@ -185,6 +187,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
 }
 </style>
 
