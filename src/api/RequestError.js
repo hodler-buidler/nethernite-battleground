@@ -6,7 +6,7 @@ import makeError from './factories/makeError';
 
 const RequestError = {
   default({ response }) {
-    if (response.status === 404) return this.notFound();
+    if (response?.status === 404) return this.notFound();
     return this.unexpected();
   },
 

@@ -35,7 +35,10 @@ export default {
     },
 
     isSearchInputProvided() {
-      return !!this.searchInput || !!this.searchParam;
+      return (
+        (!!this.searchInput || !!this.searchParam) &&
+        (this.searchInput?.length > 1 || this.searchParam?.length > 1)
+      );
     },
   },
 
@@ -49,6 +52,10 @@ export default {
       immediate: true,
     },
 
+    searchInput() {
+      this.setCurrentPage(1);
+    },
+
     page: {
       handler(value) {
         if (value !== this.currentPage) {
@@ -56,6 +63,11 @@ export default {
         }
       },
       immediate: true,
+    },
+
+    currentPage(newValue, oldValue) {
+      if (newValue === oldValue) return;
+      if (!this.isSearchInputProvided) this.getMostPopularPackages();
     },
 
     isSearchInputProvided: {
@@ -67,15 +79,16 @@ export default {
   },
 
   methods: {
-    ...mapActions('packages', ['loadMostPopularPackages']),
+    ...mapActions('packages', ['loadMostPopularPackages', 'getPackage']),
 
     async getMostPopularPackages() {
       try {
         this.setLoading(true);
-        this.packages = await this.loadMostPopularPackages({
+        const packages = await this.loadMostPopularPackages({
           limit: this.limit,
           page: this.currentPage,
         });
+        this.setPackages(packages);
       } catch (error) {
         this.setError();
       } finally {
@@ -91,6 +104,10 @@ export default {
       this.searchInput = value;
     },
 
+    setPackages(packages) {
+      this.packages = packages;
+    },
+
     setCurrentPage(value) {
       this.currentPage = value;
     },
@@ -103,8 +120,10 @@ export default {
     <div>
       <SearchPackages
         v-model="searchInput"
-        @search-started="() => {}"
-        @search-completed="() => {}"
+        :per-page="limit"
+        :page="currentPage"
+        @loading="setLoading"
+        @search-result="setPackages"
       />
     </div>
 
@@ -119,7 +138,11 @@ export default {
       </div>
 
       <div>
-        <PackagesTable :packages="packages" :loading="isLoading" />
+        <PackagesTable
+          :packages="packages"
+          :is-search-result="isSearchInputProvided"
+          :loading="isLoading"
+        />
       </div>
     </div>
   </div>

@@ -5,10 +5,24 @@ export default {
   props: {
     packages: { type: Array, required: true },
     loading: { type: Boolean, default: false },
+    isSearchResult: { type: Boolean, default: false },
   },
 
   computed: {
     headers() {
+      if (this.isSearchResult) {
+        return [
+          { text: this.$t('name'), value: 'name' },
+          { text: this.$t('author'), value: 'author.name', sortable: false },
+          { text: this.$t('version'), value: 'version', sortable: false },
+          {
+            text: this.$t('repository'),
+            value: 'links.repository',
+            sortable: false,
+          },
+        ];
+      }
+
       return [
         { text: this.$t('name'), value: 'name' },
         { text: this.$t('type'), value: 'type' },
@@ -35,11 +49,17 @@ export default {
 {
   "en": {
     "name": "Package name",
+    "author": "Author",
+    "version": "Version",
+    "repository": "Repository",
     "type": "Source type",
     "hits": "Downloads"
   },
   "ru": {
     "name": "Имя пакета",
+    "author": "Автор",
+    "version": "Версия",
+    "repository": "Репозиторий",
     "type": "Источник",
     "hits": "Количество скачиваний"
   }
