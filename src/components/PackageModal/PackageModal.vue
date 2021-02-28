@@ -57,6 +57,7 @@ export default {
 
   methods: {
     ...mapActions('packages', ['getPackage']),
+    ...mapActions('system', ['setErrorMessage']),
 
     close() {
       this.isOpened = false;
@@ -71,7 +72,7 @@ export default {
         });
       } catch (error) {
         this.close();
-        // this.setError();
+        this.setErrorMessage(this.$t('not-found-npm'));
       } finally {
         this.setLoading(false);
       }
@@ -153,14 +154,16 @@ export default {
     "license": "License",
     "maintainers": "Maintainers",
     "name": "Name",
-    "email": "E-mail"
+    "email": "E-mail",
+    "not-found-npm": "This package is not registered at NPM or was not found"
   },
   "ru": {
     "description": "Описание",
     "license": "Права",
     "maintainers": "Команда поддержки",
     "name": "Имя",
-    "email": "Почта"
+    "email": "Почта",
+    "not-found-npm": "Этот пакет не зарегистрирован в NPM или был не найден"
   }
 }
 </i18n>

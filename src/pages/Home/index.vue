@@ -90,6 +90,7 @@ export default {
 
   methods: {
     ...mapActions('packages', ['loadMostPopularPackages', 'getPackage']),
+    ...mapActions('system', ['setErrorMessage']),
 
     async getMostPopularPackages() {
       try {
@@ -100,7 +101,7 @@ export default {
         });
         this.setPackages(packages);
       } catch (error) {
-        this.setError();
+        if (error.message) this.setErrorMessage(error.message);
       } finally {
         this.setLoading(false);
       }

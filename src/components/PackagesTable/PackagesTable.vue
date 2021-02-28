@@ -25,7 +25,7 @@ export default {
 
       return [
         { text: this.$t('name'), value: 'name' },
-        { text: this.$t('type'), value: 'type' },
+        { text: this.$t('type'), value: 'type', sortable: false },
         { text: this.$t('hits'), value: 'hits' },
       ];
     },

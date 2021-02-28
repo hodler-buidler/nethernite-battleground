@@ -58,6 +58,7 @@ export default {
 
   methods: {
     ...mapActions('packages', ['searchPackages']),
+    ...mapActions('system', ['setErrorMessage']),
 
     updateSearchResults(userInput) {
       if (userInput?.length > 1) this.getSearchResults();
@@ -75,7 +76,7 @@ export default {
         const packagesOnly = packages.objects.map((item) => item.package);
         this.setSearchResults(packagesOnly);
       } catch (error) {
-        this.setError();
+        if (error.message) this.setErrorMessage(error.message);
       } finally {
         this.setLoading(false);
       }
