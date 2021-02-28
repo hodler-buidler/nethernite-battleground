@@ -26,9 +26,12 @@ export default {
       immediate: true,
     },
 
-    searchInput(newValue) {
-      this.$emit('input', newValue);
-      this.updateSearchResults(newValue);
+    searchInput: {
+      handler(newValue) {
+        this.$emit('input', newValue);
+        this.updateSearchResults(newValue);
+      },
+      immediate: true,
     },
 
     searchResults: {
@@ -44,12 +47,12 @@ export default {
 
     perPage(oldValue, newValue) {
       if (oldValue === newValue) return;
-      this.getSearchResults();
+      this.updateSearchResults(this.searchInput);
     },
 
     page(oldValue, newValue) {
       if (oldValue === newValue) return;
-      this.getSearchResults();
+      this.updateSearchResults(this.searchInput);
     },
   },
 

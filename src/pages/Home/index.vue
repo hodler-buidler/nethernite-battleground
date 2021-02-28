@@ -22,7 +22,7 @@ export default {
   data: () => ({
     packages: [],
     searchInput: '',
-    isLoading: true,
+    isLoading: false,
     currentPage: 1,
   }),
 
@@ -52,8 +52,11 @@ export default {
       immediate: true,
     },
 
-    searchInput() {
+    searchInput(newValue) {
       this.setCurrentPage(1);
+      this.$router
+        .push({ query: { ...this.$route.query, search: newValue } })
+        .catch(() => {});
     },
 
     page: {
@@ -68,6 +71,9 @@ export default {
     currentPage(newValue, oldValue) {
       if (newValue === oldValue) return;
       if (!this.isSearchInputProvided) this.getMostPopularPackages();
+      this.$router
+        .push({ query: { ...this.$route.query, page: newValue } })
+        .catch(() => {});
     },
 
     isSearchInputProvided: {
