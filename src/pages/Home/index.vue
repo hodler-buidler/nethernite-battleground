@@ -1,28 +1,35 @@
 <script>
 import { mapActions } from 'vuex';
 import SearchPackages from '@/components/SearchPackages/SearchPackages.vue';
+import PackagesTable from '@/components/PackagesTable/PackagesTable.vue';
+import BasePagination from '@/components/BasePagination/BasePagination.vue';
 
 export default {
   name: 'HomePage',
 
-  components: { SearchPackages },
+  components: {
+    SearchPackages,
+    PackagesTable,
+    BasePagination,
+  },
 
   props: {
     searchParam: { type: String, default: '' },
+    limit: { type: [String, Number], default: 10 },
+    page: { type: [String, Number], default: 1 },
   },
 
   data: () => ({
-    fetchedPackages: [],
+    packages: [],
     searchInput: '',
     isLoading: true,
+    currentPage: 1,
   }),
 
   computed: {
     title() {
       if (this.isSearchInputProvided) {
-        return `${this.$t('searched-packages')} (${
-          this.fetchedPackages.length
-        })`;
+        return this.$t('searched-packages');
       }
       return this.$t('most-popular-packages');
     },
@@ -35,8 +42,17 @@ export default {
   watch: {
     searchParam: {
       handler(value) {
-        if (this.searchParam !== this.searchInput) {
+        if (value !== this.searchInput) {
           this.setSearchInput(value);
+        }
+      },
+      immediate: true,
+    },
+
+    page: {
+      handler(value) {
+        if (value !== this.currentPage) {
+          this.setCurrentPage(value);
         }
       },
       immediate: true,
@@ -56,7 +72,10 @@ export default {
     async getMostPopularPackages() {
       try {
         this.setLoading(true);
-        this.fetchedPackages = await this.loadMostPopularPackages();
+        this.packages = await this.loadMostPopularPackages({
+          limit: this.limit,
+          page: this.currentPage,
+        });
       } catch (error) {
         this.setError();
       } finally {
@@ -70,6 +89,10 @@ export default {
 
     setSearchInput(value) {
       this.searchInput = value;
+    },
+
+    setCurrentPage(value) {
+      this.currentPage = value;
     },
   },
 };
@@ -85,17 +108,36 @@ export default {
       />
     </div>
 
-    <div>
-      <div>
-        <span class="text-h4">{{ title }}</span>
+    <div class="packages-display">
+      <div class="results-header packages-display__header">
+        <div>
+          <span class="text-h4">{{ title }}</span>
+        </div>
+        <div>
+          <BasePagination v-model="currentPage" :items="packages" />
+        </div>
       </div>
 
-      <div></div>
+      <div>
+        <PackagesTable :packages="packages" :loading="isLoading" />
+      </div>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.packages-display {
+  &__header {
+    margin-bottom: 18px;
+  }
+}
+
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+</style>
 
 <i18n>
 {

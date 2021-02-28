@@ -12,6 +12,8 @@ const routes = [
           import(/* webpackChunkName: "Home" */ '@/pages/Home/index.vue'),
         props: (route) => ({
           searchParam: route.query.search,
+          limit: route.query.limit,
+          page: route.query.page,
         }),
       },
     ],
