@@ -12,7 +12,7 @@ export default {
 <template>
   <v-footer fixed>
     <div class="footer-content text-center">
-      <span>{{ $t('created-by') }} (28.02.2021) -</span>
+      <span>{{ $t('created-by') }} (28.02.2021) - &nbsp;</span>
       <span>
         <a :href="AUTHOR_GITHUB_ACCOUNT" target="_blank">Github</a>
       </span>

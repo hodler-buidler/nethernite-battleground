@@ -1,0 +1,2 @@
+export const UNEXPECTED_ERROR_STATUS = 520;
+export const NOT_FOUND_ERROR_STATUS = 404;

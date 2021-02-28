@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-// import example from './_exampleModule';
+import packages from './packages';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    // example,
+    packages,
   },
 });
