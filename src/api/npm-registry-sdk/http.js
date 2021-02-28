@@ -6,7 +6,7 @@ function http(avoidCors = false) {
     : '';
 
   return axios.create({
-    baseURL: `${corsUrl}http://registry.npmjs.org/`,
+    baseURL: `${corsUrl}https://registry.npmjs.org/`,
   });
 }
 
