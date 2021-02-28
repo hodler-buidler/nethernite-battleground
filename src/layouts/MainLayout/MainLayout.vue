@@ -1,17 +1,26 @@
 <script>
 import TheHeader from '@/components/TheHeader/TheHeader.vue';
+import TheFooter from '@/components/TheFooter/TheFooter.vue';
 
 export default {
   name: 'MainLayout',
-  components: { TheHeader },
+  components: { TheHeader, TheFooter },
 };
 </script>
 
 <template>
   <div>
     <TheHeader />
-    <router-view />
+    <div class="content">
+      <router-view />
+    </div>
+    <TheFooter />
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.content {
+  @extend %container;
+  padding: 40px 0;
+}
+</style>
