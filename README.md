@@ -1,29 +1,10 @@
-# nethernite-battleground
+# Nethernite-battleground
 
-## Project setup
-```
-yarn install
-```
+Это тестовое задание, которое я выполнил для рассмотрения моей кандидатуры на вакансии.
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+ТЗ: [https://docs.google.com/document/d/1DxR5ZAflS9k5mCEGrQwynPT78TW2OSZTHcARBVTxRAQ/edit](https://docs.google.com/document/d/1DxR5ZAflS9k5mCEGrQwynPT78TW2OSZTHcARBVTxRAQ/edit)
 
-### Compiles and minifies for production
+## Установка проекта
 ```
-yarn build
+npm i && npm run start
 ```
-
-### Run your unit tests
-```
-yarn test:unit
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
