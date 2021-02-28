@@ -10,7 +10,7 @@
     "check-format": "yarn prettier --list-different",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(js|vue|json|jsx|wasm)\"",
     "lint:fix": "yarn lint --fix",
-    "validate": "yarn check-format && yarn lint && yarn test:unit && yarn build",
+    "validate": "yarn check-format && yarn lint && yarn test:unit",
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "i18n:export": "npx vue-i18n-service export > translations.json",
