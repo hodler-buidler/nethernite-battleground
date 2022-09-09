@@ -29,10 +29,10 @@ export default {
 <i18n>
 {
   "en": {
-    "created-by": "Developed by Nikita Golubev"
+    "created-by": "Developed by Hodler Buidler"
   },
   "ru": {
-    "created-by": "Разработано Никитой Голубевым"
+    "created-by": "Разработано Hodler Buidler"
   }
 }
 </i18n>
